@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import os
-import scipy.signal as sg
+#import scipy.signal as sg
 
 
 xx = np.arange(0, 10000)
@@ -119,7 +119,7 @@ def calculate_pole(n):
 
 
 #rootdir = 'E:\\400-8g'
-rootdir = 'E:\\Bean_workshop\\workspace\\algo\\test'
+rootdir = 'G:\\algo'
 list = os.listdir(rootdir)
 for j in range(0,len(list)):
     path = os.path.join(rootdir,list[j])
@@ -151,18 +151,18 @@ for j in range(0,len(list)):
         index2 = 0
         while index < 10000 and line:
             str = line.split(',')
-            if (int(str[2]) == -1) and (int(str[1]) == -1) and (int(str[0]) == -1) :
+            if (int(str[2]) == -1) and (int(str[1]) == -1) and (int(str[0]) == -1):
                 break
-            zy[index] = (int(str[1]))
-            yy[index] = calculate_average(zy[index])
-            bb[index] = calculate_peak(zy[index])
+            zy[index] = (int(str[0]))
+            yy[index] = (int(str[1]))
+            bb[index] = (int(str[2]))
             index += 1
             line = f.readline()
         #zz = sg.medfilt(zy, 49)
         plt.figure()
-        #plt.plot(xx, yy, label="$smoothing$",color='g')
-        plt.plot(xx, zy, 'r',label="$origin$")
-        plt.plot(xx, bb, 'b', label="$lowest spot$")
+        plt.plot(xx, zy, label="$x$",color='g')
+        plt.plot(xx, yy, 'r',label="$y$")
+        plt.plot(xx, bb, 'b', label="$z$")
         plt.legend()
         plt.show()
         f.close()
